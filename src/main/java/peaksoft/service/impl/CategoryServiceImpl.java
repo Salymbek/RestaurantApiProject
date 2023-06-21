@@ -16,7 +16,6 @@ import peaksoft.model.Category;
 import peaksoft.repository.CategoryRepository;
 import peaksoft.service.CategoryService;
 
-import java.util.List;
 
 @Service
 @Transactional
@@ -28,8 +27,14 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryResponse> findAll() {
-        return categoryRepository.findAllCategory();
+    public CategoryPagination getCategory (int page, int size){
+        Pageable pageable = PageRequest.of(page-1,size);
+        Page<CategoryResponse> allCategory = categoryRepository.findAllCategory(pageable);
+        return CategoryPagination.builder()
+                .categories(allCategory.getContent())
+                .currentPage(allCategory.getNumber()+1)
+                .pageSize(allCategory.getTotalPages())
+                .build();
     }
 
     @Override
@@ -70,17 +75,5 @@ public class CategoryServiceImpl implements CategoryService {
                 .message("Category with id - " + categoryId + " is deleted")
                 .build();
     }
-
-//    @Override
-//    public CategoryPagination getCategoryPagination(int page, int size) {
-//        Pageable pageable = PageRequest.of(page - 1, size);
-//        Page<Category> all = categoryRepository.findAll(pageable);
-//
-//        CategoryPagination paginationCategoryResponse = new CategoryPagination();
-//        paginationCategoryResponse.setCategories(all.getContent());
-//        paginationCategoryResponse.setCurrentPage(pageable.getPageNumber()+1);
-//        paginationCategoryResponse.setPageSize(all.getTotalPages());
-//        return paginationCategoryResponse;
-//    }
 
 }

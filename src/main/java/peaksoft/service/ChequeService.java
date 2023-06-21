@@ -1,7 +1,5 @@
 package peaksoft.service;
 
-import org.springframework.data.domain.PageRequest;
-import peaksoft.dto.pagination.ChequePagination;
 import peaksoft.dto.request.ChequeRequest;
 import peaksoft.dto.response.*;
 
@@ -21,5 +19,4 @@ public interface ChequeService {
 
     SimpleResponse avg(LocalDate date);
 
-   // ChequePagination getChequePagination(int page, int size);
 }

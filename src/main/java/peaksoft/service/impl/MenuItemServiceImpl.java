@@ -9,7 +9,6 @@ import peaksoft.dto.response.MenuItemResponse;
 import peaksoft.dto.response.SimpleResponse;
 import peaksoft.exception.AlreadyExistException;
 import peaksoft.exception.NotFoundException;
-import peaksoft.model.Cheque;
 import peaksoft.model.MenuItem;
 
 import peaksoft.model.Subcategory;
@@ -135,18 +134,6 @@ public class MenuItemServiceImpl implements MenuItemService {
         return menuItemRepository.findMenuItemByIsVegetarian(isTrue);
     }
 
-//    @Override
-//    public MenuItemPagination getMenuItemPagination(int page, int size) {
-//        Pageable pageable = PageRequest.of(page-1, size);
-//        Page<MenuItem> all = menuItemRepository.findAll(pageable);
-//
-//        MenuItemPagination paginationMenuResponse = new MenuItemPagination();
-//     //   paginationMenuResponse.setMenuItems(all.getContent());
-//        paginationMenuResponse.setCurrentPage(pageable.getPageNumber()+1);
-//        paginationMenuResponse.setPageSize(all.getTotalPages());
-//        return paginationMenuResponse;
-//
-//    }
 
     @Override
     public List<MenuItemAllResponse> globalSearch(String keyWord) {

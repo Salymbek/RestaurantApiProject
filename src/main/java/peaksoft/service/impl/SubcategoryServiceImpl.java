@@ -36,13 +36,16 @@ public class SubcategoryServiceImpl implements SubcategoryService {
 
 
     @Override
-    public List<SubCategoryResponse> findAllByCategoryId(Long id) {
-        if (id == null){
-            return subcategoryRepository.findAllSubCategoryResponse();
-        }else {
-            return subcategoryRepository.findAllByCategoryIdOrderByName(id);
-        }
+    public SubcategoryPagination getAllSubcategory(int page, int size) {
+        Pageable pageable = PageRequest.of(page-1,size);
+        Page<SubCategoryResponse> allCategory = subcategoryRepository.getAllSubcategory(pageable);
+        return SubcategoryPagination.builder()
+                .subcategories(allCategory.getContent())
+                .currentPage(allCategory.getNumber()+1)
+                .pageSize(allCategory.getTotalPages())
+                .build();
     }
+
 
 
     @Override
@@ -104,18 +107,6 @@ public class SubcategoryServiceImpl implements SubcategoryService {
         List<SubcategoryResponseByCategory> grouping = subcategoryRepository.findAllGrouping();
         return grouping.stream().collect(Collectors.groupingBy(SubcategoryResponseByCategory::category));
     }
-
-//    @Override
-//    public SubcategoryPagination getUserPagination(int page, int size) {
-//        Pageable pageable = PageRequest.of(page-1, size);
-//        Page<Subcategory> all = subcategoryRepository.findAll(pageable);
-//
-//        SubcategoryPagination paginationSubCategoryResponse = new SubcategoryPagination();
-//     //   paginationSubCategoryResponse.setSubcategories(all.getContent());
-//        paginationSubCategoryResponse.setCurrentPage(pageable.getPageNumber()+1);
-//        paginationSubCategoryResponse.setPageSize(all.getTotalPages());
-//        return paginationSubCategoryResponse;
-//    }
 
 
 }

@@ -7,7 +7,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
-import peaksoft.config.jwt.JwtFilter;
 
 @Component
 public class SecurityConfig {
@@ -26,7 +25,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/user/register","/api/user/login")
                 .permitAll()
                 .anyRequest()
-                .authenticated()
+                .permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

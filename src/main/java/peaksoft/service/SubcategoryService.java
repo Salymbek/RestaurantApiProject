@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface SubcategoryService {
-    List<SubCategoryResponse> findAllByCategoryId(Long id);
+    SubcategoryPagination getAllSubcategory (int page, int size);
 
     SimpleResponse save(SubcategoryRequest request);
 
@@ -21,5 +21,4 @@ public interface SubcategoryService {
     List<SubCategoryResponse> sorting (String ascOrDesc);
 
     Map<String,List<SubcategoryResponseByCategory>> groupingByCategory();
-   // SubcategoryPagination getUserPagination(int page, int size);
 }

@@ -32,8 +32,8 @@ public class SubcategoryApi {
 
     @PreAuthorize("permitAll()")
     @GetMapping
-    public List<SubCategoryResponse> findAll(@RequestParam(required = false) Long id) {
-        return subCategoryService.findAllByCategoryId(id);
+    public SubcategoryPagination findAll(@RequestParam int page,@RequestParam int size) {
+        return subCategoryService.getAllSubcategory(page, size);
     }
 
     @PutMapping("/{subCategoryId}")
@@ -61,10 +61,5 @@ public class SubcategoryApi {
         return subCategoryService.groupingByCategory();
     }
 
-//    @GetMapping("/pagination")
-//    public SubcategoryPagination getSubPage(@RequestParam int page,
-//                                            @RequestParam int size){
-//        return subCategoryService.getUserPagination(page,size);
-//    }
 
 }

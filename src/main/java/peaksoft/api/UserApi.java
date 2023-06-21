@@ -2,7 +2,6 @@ package peaksoft.api;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import peaksoft.dto.pagination.UserPagination;
 import peaksoft.dto.request.ApplicationRequest;
 import peaksoft.dto.request.RegisterRequest;
 import peaksoft.dto.request.UserRequest;
@@ -63,12 +62,5 @@ public class UserApi {
                                   @RequestBody ApplicationRequest request){
         return userService.applicationAccept(restaurantId, request);
     }
-
-//    @GetMapping("/pagination")
-//    public UserPagination getUserPage(@RequestParam int page,
-//                                      @RequestParam int size){
-//        return userService.getUserPagination(page,size);
-//    }
-
 
 }

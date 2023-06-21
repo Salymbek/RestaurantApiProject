@@ -3,7 +3,6 @@ package peaksoft.api;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import peaksoft.dto.pagination.MenuItemPagination;
 import peaksoft.dto.request.MenuItemRequest;
 import peaksoft.dto.response.MenuItemAllResponse;
 import peaksoft.dto.response.MenuItemResponse;
@@ -59,10 +58,6 @@ public class MenuItemApi {
         return menuItemService.sortIsVegetarian(isTrue);
     }
 
-//    @GetMapping("/pagination")
-//    public MenuItemPagination getMenuItemPage(@RequestParam int page, @RequestParam int size){
-//        return menuItemService.getMenuItemPagination(page,size);
-//    }
 
     @GetMapping("/search")
     public List<MenuItemAllResponse> search (@RequestParam(required = false) String keyWord){

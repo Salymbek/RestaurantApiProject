@@ -13,8 +13,7 @@ import java.util.Optional;
 
 public interface SubcategoryRepository extends JpaRepository<Subcategory, Long> {
     @Query("select new peaksoft.dto.response.SubCategoryResponse(s.id,s.name) from Subcategory s")
-    List<SubCategoryResponse> findAllSubCategoryResponse();
-    List<SubCategoryResponse> findAllByCategoryIdOrderByName(Long id);
+    Page<SubCategoryResponse> getAllSubcategory(Pageable pageable);
 
     @Query("select new peaksoft.dto.response.SubcategoryResponseByCategory(c.name,s.name) from Category c join c.subcategories s")
     List<SubcategoryResponseByCategory> findAllGrouping();
@@ -27,6 +26,4 @@ public interface SubcategoryRepository extends JpaRepository<Subcategory, Long> 
 
     Optional<Subcategory> findByName(String name);
 
-    @Override
-    Page<Subcategory> findAll(Pageable pageable);
 }

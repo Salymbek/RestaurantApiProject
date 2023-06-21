@@ -1,7 +1,5 @@
 package peaksoft.service;
 
-import org.springframework.data.domain.PageRequest;
-import peaksoft.dto.pagination.MenuItemPagination;
 import peaksoft.dto.request.MenuItemRequest;
 import peaksoft.dto.response.MenuItemAllResponse;
 import peaksoft.dto.response.MenuItemResponse;
@@ -21,8 +19,6 @@ public interface MenuItemService {
     SimpleResponse deleteManu(Long id);
 
     List<MenuItemResponse> sortIsVegetarian (boolean isTrue);
-
-   // MenuItemPagination getMenuItemPagination(int page, int size);
 
     List<MenuItemAllResponse> globalSearch(String keyWord);
 }

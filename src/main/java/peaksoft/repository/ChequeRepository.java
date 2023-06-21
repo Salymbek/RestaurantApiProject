@@ -1,8 +1,5 @@
 package peaksoft.repository;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import peaksoft.dto.response.ChequeResponse;
@@ -10,7 +7,6 @@ import peaksoft.dto.response.MenuChequesResponse;
 import peaksoft.model.Cheque;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ChequeRepository extends JpaRepository<Cheque, Long> {
     @Query("select new peaksoft.dto.response.ChequeResponse(c.id, c.createdAt,concat(c.user.firstName,' ',c.user.lastName), sum(m.price), m.restaurant.service)" +
@@ -22,6 +18,4 @@ public interface ChequeRepository extends JpaRepository<Cheque, Long> {
     List<MenuChequesResponse> getFoods (Long chequeId);
 
 
-    @Override
-    Page<Cheque> findAll(Pageable pageable);
 }

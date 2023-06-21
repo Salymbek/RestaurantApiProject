@@ -3,16 +3,12 @@ package peaksoft.service.impl;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import peaksoft.config.JwtService;
-import peaksoft.dto.pagination.UserPagination;
 import peaksoft.dto.request.ApplicationRequest;
 import peaksoft.dto.request.RegisterRequest;
 import peaksoft.dto.request.UserRequest;
@@ -209,18 +205,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.getAllUsers();
     }
 
-//    @Override
-//    public UserPagination getUserPagination(int page, int size) {
-//
-//        Pageable pageable = PageRequest.of(page-1, size);
-//        Page<User> all = userRepository.findAll(pageable);
-//
-//        UserPagination paginationUserResponse = new UserPagination();
-//     //   paginationUserResponse.setUsers(all.getContent());
-//        paginationUserResponse.setCurrentPage(pageable.getPageNumber()+1);
-//        paginationUserResponse.setPageSize(all.getTotalPages());
-//        return paginationUserResponse;
-//    }
 
     @Override
     public SimpleResponse applicationAccept(Long restId, ApplicationRequest request) {

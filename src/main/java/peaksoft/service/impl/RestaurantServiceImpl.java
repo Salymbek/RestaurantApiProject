@@ -4,7 +4,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import peaksoft.dto.request.RestaurantRequest;
-import peaksoft.dto.response.AllRestaurant;
 import peaksoft.dto.response.RestaurantResponse;
 import peaksoft.dto.response.SimpleResponse;
 import peaksoft.dto.response.UserResponse;
@@ -37,10 +36,6 @@ public class RestaurantServiceImpl implements RestaurantService {
                 .orElseThrow(() -> new NotFoundException(
                         String.format("Restaurant with id: %s not found!", id)));    }
 
-//    @Override
-//    public List<AllRestaurant> findAllRestaurant() {
-//        return repository.findAllRestaurant();
-//    }
 
     @Override
     public SimpleResponse save(RestaurantRequest request) {

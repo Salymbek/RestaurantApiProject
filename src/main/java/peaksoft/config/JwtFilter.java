@@ -1,4 +1,4 @@
-package peaksoft.config.jwt;
+package peaksoft.config;
 
 
 import com.auth0.jwt.exceptions.JWTVerificationException;

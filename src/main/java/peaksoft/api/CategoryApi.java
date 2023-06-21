@@ -3,12 +3,10 @@ package peaksoft.api;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import peaksoft.dto.pagination.CategoryPagination;
 import peaksoft.dto.request.CategoryRequest;
-import peaksoft.dto.response.CategoryResponse;
 import peaksoft.dto.response.SimpleResponse;
 import peaksoft.service.CategoryService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/category")
@@ -20,8 +18,8 @@ public class CategoryApi {
     }
     @GetMapping
     @PreAuthorize("permitAll()")
-    List<CategoryResponse> getAll(){
-        return categoryService.findAll();
+    public CategoryPagination getAllCategory(@RequestParam int page, @RequestParam int size){
+        return categoryService.getCategory(page, size);
     }
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ADMIN', 'CHEF')")
@@ -40,9 +38,4 @@ public class CategoryApi {
         return categoryService.delete(categoryId);
     }
 
-//    @GetMapping("/pagination")
-//    public CategoryPagination getCategory(@RequestParam int page,
-//                                          @RequestParam int size){
-//        return categoryService.getCategoryPagination(page,size);
-//    }
 }

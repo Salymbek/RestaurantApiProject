@@ -3,7 +3,6 @@ package peaksoft.api;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import peaksoft.dto.pagination.ChequePagination;
 import peaksoft.dto.request.ChequeRequest;
 import peaksoft.dto.response.*;
 import peaksoft.service.ChequeService;
@@ -35,10 +34,9 @@ public class ChequeApi {
         return chequeService.delete(id);
     }
 
-    @PutMapping("/{userId}/{chequeId}")
+    @PutMapping("/{chequeId}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    SimpleResponse update(@PathVariable  Long userId,
-                          @PathVariable Long chequeId,
+    SimpleResponse update(@PathVariable Long chequeId,
                           @RequestBody @Valid ChequeRequest chequeRequest) {
         return chequeService.update(chequeId, chequeRequest);
     }
@@ -62,8 +60,4 @@ public class ChequeApi {
         return chequeService.avg(date);
     }
 
-//    @GetMapping("/pagination")
-//    public ChequePagination getChequePage(@RequestParam int page, @RequestParam int size){
-//        return chequeService.getChequePagination(page,size);
-//    }
 }

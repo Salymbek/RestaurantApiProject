@@ -8,6 +8,6 @@ public class PhoneNumberValidator implements ConstraintValidator <PhoneNumberVal
     @Override
     public boolean isValid(String phoneNumber,
                            ConstraintValidatorContext constraintValidatorContext) {
-        return phoneNumber.length() == 13;
+        return phoneNumber.startsWith("+996") && phoneNumber.length() == 13;
     }
 }

@@ -1,12 +1,8 @@
 package peaksoft.service.impl;
 
 import jakarta.transaction.Transactional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import peaksoft.dto.pagination.ChequePagination;
 import peaksoft.dto.request.ChequeRequest;
 import peaksoft.dto.response.*;
 import peaksoft.exception.NotFoundException;
@@ -166,18 +162,5 @@ public class ChequeServiceImpl implements ChequeService {
                 .message(String.format("Average check total : %s",avg))
                 .build();
     }
-
-//    @Override
-//    public ChequePagination getChequePagination(int page, int size) {
-//        Pageable pageable = PageRequest.of(page-1, size);
-//        Page<Cheque> all = chequeRepository.findAll(pageable);
-//
-//        ChequePagination paginationChequeResponse = new ChequePagination();
-//     //   paginationChequeResponse.setCheques(all.getContent());
-//        paginationChequeResponse.setCurrentPage(pageable.getPageNumber()+1);
-//        paginationChequeResponse.setPageSize(all.getTotalPages());
-//        return paginationChequeResponse;
-//
-//    }
 
 }

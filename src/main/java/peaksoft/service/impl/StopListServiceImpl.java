@@ -18,7 +18,6 @@ import peaksoft.repository.StopListRepository;
 import peaksoft.service.StopListService;
 
 
-import java.util.List;
 
 @Service
 @Transactional
@@ -61,8 +60,14 @@ public class StopListServiceImpl implements StopListService {
     }
 
     @Override
-    public List<StopListResponse> findStopLists() {
-        return stopListRepository.findAllStopList();
+    public StopListPagination getAllStopList(int page, int size) {
+        Pageable pageable = PageRequest.of(page-1,size);
+        Page<StopListResponse> allCategory = stopListRepository.findAllStopList(pageable);
+        return StopListPagination.builder()
+                .stopLists(allCategory.getContent())
+                .currentPage(allCategory.getNumber()+1)
+                .pageSize(allCategory.getTotalPages())
+                .build();
     }
 
     @Override
@@ -109,16 +114,4 @@ public class StopListServiceImpl implements StopListService {
                 .message("Stop list with id - " + stopListId + " is deleted!")
                 .build();
     }
-
-//    @Override
-//    public StopListPagination getStopListPagination(int page, int size) {
-//        Pageable pageable = PageRequest.of(page-1, size);
-//        Page<StopList> all = stopListRepository.findAll(pageable);
-//
-//        StopListPagination paginationStopListResponse = new StopListPagination();
-//     //   paginationStopListResponse.setStopLists(all.getContent());
-//        paginationStopListResponse.setCurrentPage(pageable.getPageNumber()+1);
-//        paginationStopListResponse.setPageSize(all.getTotalPages());
-//        return paginationStopListResponse;
-//    }
 }

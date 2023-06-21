@@ -7,6 +7,7 @@ import java.util.List;
 
 @Setter
 @Getter
+@Builder
 public class CategoryPagination {
     private List<CategoryResponse> categories;
     private int currentPage;

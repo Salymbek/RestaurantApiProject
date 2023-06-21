@@ -4,12 +4,11 @@ package peaksoft.api;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import peaksoft.dto.pagination.StopListPagination;
 import peaksoft.dto.request.StopListRequest;
 import peaksoft.dto.response.SimpleResponse;
-import peaksoft.dto.response.StopListResponse;
 import peaksoft.service.StopListService;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/stopList")
@@ -30,8 +29,8 @@ public class StopListApi {
 
     @GetMapping
     @PreAuthorize("permitAll()")
-    public List<StopListResponse> findAll(){
-        return stopListService.findStopLists();
+    public StopListPagination findAllStopList(@RequestParam int page, @RequestParam int size){
+        return stopListService.getAllStopList(page, size);
     }
 
     @PutMapping("/{stopListId}")
@@ -47,11 +46,5 @@ public class StopListApi {
         return stopListService.delete(id);
     }
 
-
-//    @GetMapping("/pagination")
-//    public StopListPagination getStopListPage(@RequestParam int page,
-//                                              @RequestParam int size){
-//        return stopListService.getStopListPagination(page,size);
-//    }
 
 }

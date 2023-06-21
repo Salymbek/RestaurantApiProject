@@ -1,6 +1,5 @@
 package peaksoft.service;
 
-import peaksoft.dto.pagination.UserPagination;
 import peaksoft.dto.request.ApplicationRequest;
 import peaksoft.dto.request.RegisterRequest;
 import peaksoft.dto.request.UserRequest;
@@ -27,5 +26,4 @@ public interface UserService {
 
     List<UserResponse> findAllUsers(Long restaurantId);
 
-   // UserPagination getUserPagination(int page, int size);
 }
